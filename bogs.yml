@@ -1,0 +1,8 @@
+matches:
+  - trigger: ":ksrj"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "type \"%CONFIG%\\match\\Bogs-prompt\\ksrj.md\""
