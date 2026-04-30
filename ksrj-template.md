@@ -36,20 +36,34 @@
 
 ---
 
-## 模板 B：SSR 词汇卡片包 (Anki 导入格式)
+## 模板 B：SSR 词汇卡片包 (双代码块 Anki 导入格式)
 
+> 每个词强制拆成两个独立代码块：正面（卡片标题行）+ 背面（全字段详情）。
+
+**illusion — 正面**
 ```text
 illusion /ɪˈluːʒn/ Kaoyan Target ★★★
+```
+
+**illusion — 背面**
+```text
 中文：n. 错觉，幻觉。
-【时空坐标】：2026-04-28。讨论非洲农村视频。
+【时空坐标】：2026-04-28。讨论非洲农村视频中游客对"淳朴"的浪漫化认知。
 【波总原声】：他只是局限的看到了好的一面，只能看到人性良善的一面。
 【地道纠偏】：The "purity" perceived by tourists is often a romantic illusion masking harsh living conditions.
-【同义神装】：delusion (错觉) / misconception (误解)。
+【同义神装】：delusion (妄想/错觉)，misconception (误解)。
+```
 
+**mobility — 正面**
+```text
 mobility /məʊˈbɪləti/ Kaoyan Target ★★★
+```
+
+**mobility — 背面**
+```text
 中文：n. 流动性，移动性。
-【时空坐标】：2026-04-28。分析市场经济如何改变人的淳朴。
+【时空坐标】：2026-04-28。分析市场经济介入如何瓦解熟人社会的淳朴惯性。
 【波总原声】：社会经济之后，人就变了，变得没有那么淳朴了。
 【地道纠偏】：Economic mobility destroys the traditional constraints of an acquaintance society.
-【同义神装】：fluidity (流动性)。
+【同义神装】：fluidity (流动性)，portability (可移植性)。
 ```
