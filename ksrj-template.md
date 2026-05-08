@@ -36,34 +36,27 @@
 
 ---
 
-## 模板 B：SSR 词汇卡片包 (双代码块 Anki 导入格式)
+## 模板 B：SSR 词汇卡片包 (双代码块 Anki 导入格式 · V3.3)
 
-> 每个词强制拆成两个独立代码块：正面（卡片标题行）+ 背面（全字段详情）。
+> 每个词强制拆成两个独立代码块，标签写在代码块外部，背面内部强制 `<br>` 换行。
+> 五星制：核心1500词 ★★★★★ / 中频词 ★★★-★★★★ / 低频基础词 ★-★★。
 
-**illusion — 正面**
+【正面】
 ```text
-illusion /ɪˈluːʒn/ Kaoyan Target ★★★
+illusion /ɪˈluːʒn/ Kaoyan Target ★★★★★
 ```
 
-**illusion — 背面**
+【背面】
 ```text
-中文：n. 错觉，幻觉。
-【时空坐标】：2026-04-28。讨论非洲农村视频中游客对"淳朴"的浪漫化认知。
-【波总原声】：他只是局限的看到了好的一面，只能看到人性良善的一面。
-【地道纠偏】：The "purity" perceived by tourists is often a romantic illusion masking harsh living conditions.
-【同义神装】：delusion (妄想/错觉)，misconception (误解)。
+中文：n. 错觉，幻觉。<br>【真题原句】：The illusion of a classless society masks deep structural inequalities. (2012年考研阅读) [翻译：无阶级社会的幻觉掩盖了深层的结构性不平等。]<br>【时空坐标】：2026-04-28。讨论非洲农村视频中游客对"淳朴"的浪漫化认知。<br>【波总原声】：他只是局限的看到了好的一面，只能看到人性良善的一面。<br>【地道纠偏】：The "purity" perceived by tourists is often a romantic illusion masking harsh living conditions.<br>【记忆锚点】：illus(光/欺骗)+ion→光学把戏→视觉欺骗→错觉。<br>【同义神装】：delusion (妄想/错觉)，misconception (误解)。
 ```
 
-**mobility — 正面**
+【正面】
 ```text
-mobility /məʊˈbɪləti/ Kaoyan Target ★★★
+mobility /məʊˈbɪləti/ Kaoyan Target ★★★★★
 ```
 
-**mobility — 背面**
+【背面】
 ```text
-中文：n. 流动性，移动性。
-【时空坐标】：2026-04-28。分析市场经济介入如何瓦解熟人社会的淳朴惯性。
-【波总原声】：社会经济之后，人就变了，变得没有那么淳朴了。
-【地道纠偏】：Economic mobility destroys the traditional constraints of an acquaintance society.
-【同义神装】：fluidity (流动性)，portability (可移植性)。
+中文：n. 流动性，移动性。<br>【真题原句】：Social mobility has declined significantly in many developed countries over the past decades. (2018年考研阅读) [翻译：过去几十年中，许多发达国家的社会流动性大幅下降。]<br>【时空坐标】：2026-04-28。分析市场经济介入如何瓦解熟人社会的淳朴惯性。<br>【波总原声】：社会经济之后，人就变了，变得没有那么淳朴了。<br>【地道纠偏】：Economic mobility destroys the traditional constraints of an acquaintance society.<br>【记忆锚点】：mobil(移动)+ity(名词后缀)→可移动的性质→流动性。<br>【同义神装】：fluidity (流动性)，flexibility (灵活性)。
 ```
