@@ -43,8 +43,9 @@
 
 | 文件 | 命令/触发词 | 版本 | 说明 |
 |------|------------|------|------|
-| `ksrj.md` | `ksrj` / `:ksrj` | V3.2 | 口述日记 · 思想副本编译器 |
-| `kych.md` | `kych` / `:kych` | V7.2 | 考研词汇 · 实景教练 VAR |
+| `ksrj.md` | `ksrj` / `:ksrj` | V3.3 | 口述日记 · 思想副本编译器 |
+| `kych.md` | `kych` / `:kych` | V8.0 | 考研词汇 · 实景教练 VAR |
+| `smqpft.md` | `smqpft` / `:smqpft` | V1.0 | 生命切片 · 访谈主理人 |
 | `ksrj-template.md` | — | — | ksrj 格式打样示例（Golden Standard） |
 | `bogs.yml` | — | — | Espanso 桌面端触发词配置 |
 | `termux-setup.sh` | — | — | Termux 移动端一键指令注册脚本 |
