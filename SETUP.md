@@ -46,6 +46,7 @@ source ~/.bashrc
 ksrj    # 拉取口述日记指令 → 注入剪贴板
 kych    # 拉取考研词汇指令 → 注入剪贴板
 smqpft  # 拉取生命切片访谈指令 → 注入剪贴板
+tysk    # 拉取通用AI协作同步指令 → 注入剪贴板
 ```
 
 ---
@@ -84,6 +85,7 @@ smqpft  # 拉取生命切片访谈指令 → 注入剪贴板
 :ksrj   → 展开口述日记完整指令
 :kych   → 展开考研词汇完整指令
 :smqpft → 展开生命切片访谈完整指令
+:tysk   → 展开通用AI协作同步完整指令
 ```
 
 ---
@@ -95,6 +97,7 @@ smqpft  # 拉取生命切片访谈指令 → 注入剪贴板
 | `ksrj` | `:ksrj` | `ksrj.md` | V3.3 | 口述日记 · 思想副本编译器 |
 | `kych` | `:kych` | `kych.md` | V8.0 | 考研词汇 · 实景教练 VAR |
 | `smqpft` | `:smqpft` | `smqpft.md` | V1.0 | 生命切片 · 访谈主理人 |
+| `tysk` | `:tysk` | `tysk.md` | V1.0 | 通用 AI 协作 · Skill/Memory 同步 |
 
 ---
 
