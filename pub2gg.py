@@ -19,6 +19,7 @@
 import os
 import sys
 import re
+import time
 import base64
 import subprocess
 from datetime import date
@@ -96,10 +97,17 @@ def fetch_article(url):
     if nnode and nnode.get_text(strip=True):
         name = nnode.get_text(strip=True)
 
+    digest = ""
+    for sel in ('meta[name="description"]', 'meta[property="og:description"]'):
+        m = soup.select_one(sel)
+        if m and m.get("content", "").strip():
+            digest = m["content"].strip()
+            break
+
     content = soup.select_one("#js_content")
     if content is None:
         die("找不到正文 #js_content —— 可能不是公众号文章页，或文章需要验证。")
-    return title, name, content
+    return title, name, content, digest
 
 
 def wx_ext(u):
@@ -108,19 +116,28 @@ def wx_ext(u):
 
 
 # ---------- 下载微信图 + 上传 WordPress ----------
-def rehost_image(img_url, idx):
-    resp = requests.get(img_url, headers={"User-Agent": UA}, timeout=60)
-    resp.raise_for_status()
-    ext = wx_ext(img_url)
-    fn = f"pub2gg-{date.today().isoformat()}-{idx}.{ext}"
-    up = requests.post(
-        f"{WP_URL}/wp-json/wp/v2/media",
-        auth=(WP_USER, WP_PASS),
-        headers={"Content-Disposition": f'attachment; filename="{fn}"',
-                 "Content-Type": CTYPE_MAP.get(ext, "image/jpeg")},
-        data=resp.content, timeout=120)
-    up.raise_for_status()
-    return up.json()["source_url"]
+def rehost_image(img_url, idx, retries=3):
+    last_err = None
+    for attempt in range(retries):
+        try:
+            resp = requests.get(img_url, headers={"User-Agent": UA}, timeout=60)
+            resp.raise_for_status()
+            ext = wx_ext(img_url)
+            fn = f"pub2gg-{date.today().isoformat()}-{idx}.{ext}"
+            up = requests.post(
+                f"{WP_URL}/wp-json/wp/v2/media",
+                auth=(WP_USER, WP_PASS),
+                headers={"Content-Disposition": f'attachment; filename="{fn}"',
+                         "Content-Type": CTYPE_MAP.get(ext, "image/jpeg")},
+                data=resp.content, timeout=120)
+            up.raise_for_status()
+            return up.json()["source_url"]
+        except Exception as e:
+            last_err = e
+            if attempt < retries - 1:
+                print(f"   ↩️ 重试 {attempt+2}/{retries} ...")
+                time.sleep(4 * (attempt + 1))
+    raise last_err
 
 
 def process_images(content):
@@ -183,12 +200,15 @@ def tg_push(title, wp_link, wx_url, src_label, md_text):
 
 
 # ---------- 发布到 WordPress ----------
-def wp_publish(title, html):
+def wp_publish(title, html, excerpt=""):
     print("📤 发布到 WordPress（hellobog.com）...")
+    payload = {"title": title, "content": html, "status": "publish"}
+    if excerpt:
+        payload["excerpt"] = excerpt
     resp = requests.post(
         f"{WP_URL}/wp-json/wp/v2/posts",
         auth=(WP_USER, WP_PASS),
-        json={"title": title, "content": html, "status": "publish"},
+        json=payload,
         timeout=60)
     resp.raise_for_status()
     return resp.json().get("link", WP_URL)
@@ -218,9 +238,11 @@ def main():
     if "mp.weixin.qq.com" not in url:
         die("剪贴板里不是微信公众号文章链接。请先复制 https://mp.weixin.qq.com/s/... 再运行。")
 
-    title, name, content = fetch_article(url)
+    title, name, content, digest = fetch_article(url)
     print(f"📄 标题：{title}")
     print(f"📰 来源：{name or '（未识别公众号名）'}")
+    if digest:
+        print(f"📝 摘要：{digest[:60]}{'...' if len(digest)>60 else ''}")
 
     process_images(content)
 
@@ -238,7 +260,7 @@ def main():
     wp_link = ""
     if WP_USER and WP_PASS:
         try:
-            wp_link = wp_publish(title, wp_html)
+            wp_link = wp_publish(title, wp_html, digest)
             print(f"✅ WordPress 已发布：{wp_link}")
         except Exception as e:
             print(f"⚠️ WordPress 发布失败：{e}")
