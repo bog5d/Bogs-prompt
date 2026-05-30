@@ -33,7 +33,8 @@ add_alias "smqpft" "smqpft.md"  # 生命切片 · 访谈主理人
 add_alias "tysk"   "tysk.md"    # 通用 AI 协作 Skill 同步
 
 # ── 可执行脚本指令（直接运行型）────────────────────────────────
-install_script "pub" "pub.sh"   # 发布：微信草稿 + GitHub 归档双写
+install_script "pub"    "pub.sh"     # 发布：剪贴板 → 微信公众号草稿
+install_script "pub2gg" "pub2gg.py"  # 二次分发：微信已发文 → WordPress + GitHub
 
 # ── 本地密钥加载 ────────────────────────────────────────────────
 if ! grep -q "bog_secrets" "$BASHRC" 2>/dev/null; then
@@ -44,8 +45,14 @@ source "$BASHRC" 2>/dev/null
 echo ""
 echo "✅ Bogs-prompt 指令注册完毕"
 echo "   剪贴板型：ksrj, kych, smqpft, tysk"
-echo "   执行型：  pub（微信草稿 + GitHub 双写）"
+echo "   执行型：  pub（→微信草稿）、pub2gg（微信已发文 →WordPress+GitHub）"
 echo ""
-echo "⚠️  首次使用 pub 前，请确认已设置 GitHub Token："
-echo "   echo 'export BOGS_GH_TOKEN=\"你的token\"' >> ~/.bog_secrets"
-echo "   source ~/.bog_secrets"
+echo "⚠️  首次使用前，请在 ~/.bog_secrets 配置密钥（示例）："
+echo "   export BOGS_PUB_TOKEN=\"微信中继站 token\"      # pub 必需"
+echo "   export BOGS_GH_TOKEN=\"GitHub token\"           # 归档必需"
+echo "   export BOGS_GH_REPO=\"bog5d/Agentic-Capital-Workflow\""
+echo "   export BOGS_WP_URL=\"https://hellobog.com\""
+echo "   export BOGS_WP_USER=\"WordPress 用户名\""
+echo "   export BOGS_WP_APPPASS=\"WordPress 应用程序密码\"  # 非登录密码！"
+echo "   export BOGS_MP_NAME=\"你的公众号名称\""
+echo "   然后执行：source ~/.bog_secrets"

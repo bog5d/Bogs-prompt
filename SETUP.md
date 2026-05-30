@@ -99,6 +99,31 @@ tysk    # 拉取通用AI协作同步指令 → 注入剪贴板
 | `smqpft` | `:smqpft` | `smqpft.md` | V1.0 | 生命切片 · 访谈主理人 |
 | `tysk` | `:tysk` | `tysk.md` | V1.0 | 通用 AI 协作 · Skill/Memory 同步 |
 
+### 可执行脚本（Termux 直接运行，非剪贴板注入）
+
+| 命令 | 文件 | 用途 |
+|------|------|------|
+| `pub` | `pub.sh` | 剪贴板内容 → 微信中继站 → 微信公众号草稿 |
+| `pub2gg` | `pub2gg.py` | 微信已发表文章链接 → 配图重托管 → WordPress 直发 + GitHub 归档 |
+
+**密钥统一存 `~/.bog_secrets`（不进仓库）：**
+```bash
+export BOGS_PUB_TOKEN="微信中继站 token"          # pub 必需
+export BOGS_GH_TOKEN="GitHub token"               # 归档必需
+export BOGS_GH_REPO="bog5d/Agentic-Capital-Workflow"
+export BOGS_WP_URL="https://hellobog.com"
+export BOGS_WP_USER="WordPress 用户名"
+export BOGS_WP_APPPASS="WordPress 应用程序密码"   # ⚠️ 非登录密码
+export BOGS_MP_NAME="你的公众号名称"
+```
+
+> **WordPress 应用程序密码** 在 `wp-admin → 用户 → 个人资料 → 应用程序密码` 生成，
+> REST API Basic Auth 必须用它，普通登录密码无效。
+
+**pub2gg 工作流：** 在公众号写稿 → `pub` 发草稿 → 后台微调配图后发布 →
+复制已发表文章链接 → `pub2gg` 自动抓取、重托管配图、发到 WordPress 并归档 GitHub，
+文末自动追加「本文首发于公众号」反向引流。
+
 ---
 
 ## 五、AI 自检清单（接手时必做）
