@@ -45,12 +45,14 @@ from markdownify import markdownify as html_to_md
 
 
 # ---------- 配置（来自 ~/.bog_secrets）----------
-WP_URL   = os.environ.get("BOGS_WP_URL", "https://hellobog.com").rstrip("/")
-WP_USER  = os.environ.get("BOGS_WP_USER", "")
-WP_PASS  = os.environ.get("BOGS_WP_APPPASS", "")   # WordPress 应用程序密码
-GH_TOKEN = os.environ.get("BOGS_GH_TOKEN", "")
-GH_REPO  = os.environ.get("BOGS_GH_REPO", "bog5d/Agentic-Capital-Workflow")
-MP_NAME  = os.environ.get("BOGS_MP_NAME", "")       # 公众号名称，用于首发声明
+WP_URL     = os.environ.get("BOGS_WP_URL", "https://hellobog.com").rstrip("/")
+WP_USER    = os.environ.get("BOGS_WP_USER", "")
+WP_PASS    = os.environ.get("BOGS_WP_APPPASS", "")   # WordPress 应用程序密码
+GH_TOKEN   = os.environ.get("BOGS_GH_TOKEN", "")
+GH_REPO    = os.environ.get("BOGS_GH_REPO", "bog5d/Agentic-Capital-Workflow")
+MP_NAME    = os.environ.get("BOGS_MP_NAME", "")       # 公众号名称，用于首发声明
+TG_TOKEN   = os.environ.get("BOGS_TG_TOKEN", "")      # Telegram Bot Token
+TG_CHANNEL = os.environ.get("BOGS_TG_CHANNEL", "")    # Telegram Channel，如 @AgentToWest
 
 UA = ("Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0 Mobile Safari/537.36")
@@ -157,6 +159,30 @@ def process_images(content):
     return mapping
 
 
+# ---------- 推送到 Telegram ----------
+def tg_push(title, wp_link, wx_url, src_label, md_text):
+    if not TG_TOKEN or not TG_CHANNEL:
+        print("⏭  跳过 Telegram（未设置 BOGS_TG_TOKEN / BOGS_TG_CHANNEL）。")
+        return
+    print("📣 推送到 Telegram Channel ...")
+    preview = re.sub(r'[#*`>\[\]!]', '', md_text)[:200].strip()
+    if len(md_text) > 200:
+        preview += "..."
+    read_link = wp_link if wp_link else wx_url
+    text = (f"📝 *{title}*\n\n"
+            f"{preview}\n\n"
+            f"🔗 [阅读全文]({read_link})\n"
+            f"📱 本文首发于微信公众号【{src_label}】")
+    resp = requests.post(
+        f"https://api.telegram.org/bot{TG_TOKEN}/sendMessage",
+        json={"chat_id": TG_CHANNEL, "text": text, "parse_mode": "Markdown"},
+        timeout=30)
+    if resp.ok:
+        print(f"✅ Telegram 已推送：{TG_CHANNEL}")
+    else:
+        print(f"⚠️ Telegram 推送失败：{resp.text}")
+
+
 # ---------- 发布到 WordPress ----------
 def wp_publish(title, html):
     print("📤 发布到 WordPress（hellobog.com）...")
@@ -210,10 +236,11 @@ def main():
     md_text = html_to_md(inner_html, heading_style="ATX").strip() + md_footer
 
     # WordPress 发布
+    wp_link = ""
     if WP_USER and WP_PASS:
         try:
-            link = wp_publish(title, wp_html)
-            print(f"✅ WordPress 已发布：{link}")
+            wp_link = wp_publish(title, wp_html)
+            print(f"✅ WordPress 已发布：{wp_link}")
         except Exception as e:
             print(f"⚠️ WordPress 发布失败：{e}")
     else:
@@ -229,6 +256,9 @@ def main():
             print(f"⚠️ GitHub 归档失败：{e}")
     else:
         print("⏭  跳过 GitHub（未设置 BOGS_GH_TOKEN）。")
+
+    # Telegram 推送
+    tg_push(title, wp_link, url, src_label, md_text)
 
     print("\n🎉 pub2gg 完成。")
 
