@@ -37,7 +37,6 @@ def ensure(pip_name, import_name=None):
 ensure("requests")
 ensure("beautifulsoup4", "bs4")
 ensure("markdownify")
-ensure("lxml")
 
 import requests
 from bs4 import BeautifulSoup
@@ -84,7 +83,7 @@ def fetch_article(url):
     print("🌐 抓取微信文章 ...")
     r = requests.get(url, headers={"User-Agent": UA}, timeout=30)
     r.raise_for_status()
-    soup = BeautifulSoup(r.text, "lxml")
+    soup = BeautifulSoup(r.text, "html.parser")
 
     node = soup.select_one("#activity-name") or soup.select_one("h1.rich_media_title")
     title = node.get_text(strip=True) if node else ""
