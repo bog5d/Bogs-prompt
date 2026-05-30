@@ -175,26 +175,25 @@ def process_images(content):
     return mapping
 
 
-# ---------- 推送到 Telegram ----------
+# ---------- 推送到 Telegram（经阿里云中继，物理隔离）----------
 def tg_push(title, wp_link, wx_url, src_label, md_text):
-    if not TG_TOKEN or not TG_CHANNEL:
-        print("⏭  跳过 Telegram（未设置 BOGS_TG_TOKEN / BOGS_TG_CHANNEL）。")
+    relay_token = os.environ.get("BOGS_PUB_TOKEN", "")
+    if not relay_token:
+        print("⏭  跳过 Telegram（未设置 BOGS_PUB_TOKEN）。")
         return
-    print("📣 推送到 Telegram Channel ...")
+    print("📣 推送到 Telegram（经阿里云中继）...")
     preview = re.sub(r'[#*`>\[\]!]', '', md_text)[:200].strip()
     if len(md_text) > 200:
         preview += "..."
-    read_link = wp_link if wp_link else wx_url
-    text = (f"📝 *{title}*\n\n"
-            f"{preview}\n\n"
-            f"🔗 [阅读全文]({read_link})\n"
-            f"📱 本文首发于微信公众号【{src_label}】")
     resp = requests.post(
-        f"https://api.telegram.org/bot{TG_TOKEN}/sendMessage",
-        json={"chat_id": TG_CHANNEL, "text": text, "parse_mode": "Markdown"},
+        "http://47.85.62.133:8787/push_telegram",
+        headers={"Authorization": f"Bearer {relay_token}",
+                 "Content-Type": "application/json"},
+        json={"title": title, "excerpt": preview,
+              "wp_link": wp_link, "wx_url": wx_url, "mp_name": src_label},
         timeout=30)
-    if resp.ok:
-        print(f"✅ Telegram 已推送：{TG_CHANNEL}")
+    if resp.ok and resp.json().get("ok"):
+        print("✅ Telegram 已推送（经阿里云中继）")
     else:
         print(f"⚠️ Telegram 推送失败：{resp.text}")
 
