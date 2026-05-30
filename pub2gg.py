@@ -44,24 +44,7 @@ from bs4 import BeautifulSoup
 from markdownify import markdownify as html_to_md
 
 
-# ---------- 配置（来自 ~/.bog_secrets）----------
-WP_URL     = os.environ.get("BOGS_WP_URL", "https://hellobog.com").rstrip("/")
-WP_USER    = os.environ.get("BOGS_WP_USER", "")
-WP_PASS    = os.environ.get("BOGS_WP_APPPASS", "")   # WordPress 应用程序密码
-GH_TOKEN   = os.environ.get("BOGS_GH_TOKEN", "")
-GH_REPO    = os.environ.get("BOGS_GH_REPO", "bog5d/Agentic-Capital-Workflow")
-MP_NAME    = os.environ.get("BOGS_MP_NAME", "")       # 公众号名称，用于首发声明
-TG_TOKEN   = os.environ.get("BOGS_TG_TOKEN", "")      # Telegram Bot Token
-TG_CHANNEL = os.environ.get("BOGS_TG_CHANNEL", "")    # Telegram Channel，如 @AgentToWest
-
-UA = ("Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 "
-      "(KHTML, like Gecko) Chrome/120.0 Mobile Safari/537.36")
-
-EXT_MAP   = {"jpeg": "jpg", "jpg": "jpg", "png": "png", "gif": "gif", "webp": "webp"}
-CTYPE_MAP = {"jpg": "image/jpeg", "png": "image/png",
-             "gif": "image/gif", "webp": "image/webp"}
-
-
+# ---------- 先加载本地密钥（必须在配置读取之前）----------
 def _load_secrets():
     p = os.path.expanduser("~/.bog_secrets")
     if not os.path.exists(p):
@@ -78,6 +61,23 @@ def _load_secrets():
                     os.environ[k.strip()] = v
 
 _load_secrets()
+
+# ---------- 配置（来自 ~/.bog_secrets）----------
+WP_URL     = os.environ.get("BOGS_WP_URL", "https://hellobog.com").rstrip("/")
+WP_USER    = os.environ.get("BOGS_WP_USER", "")
+WP_PASS    = os.environ.get("BOGS_WP_APPPASS", "")
+GH_TOKEN   = os.environ.get("BOGS_GH_TOKEN", "")
+GH_REPO    = os.environ.get("BOGS_GH_REPO", "bog5d/Agentic-Capital-Workflow")
+MP_NAME    = os.environ.get("BOGS_MP_NAME", "")
+TG_TOKEN   = os.environ.get("BOGS_TG_TOKEN", "")
+TG_CHANNEL = os.environ.get("BOGS_TG_CHANNEL", "")
+
+UA = ("Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/120.0 Mobile Safari/537.36")
+
+EXT_MAP   = {"jpeg": "jpg", "jpg": "jpg", "png": "png", "gif": "gif", "webp": "webp"}
+CTYPE_MAP = {"jpg": "image/jpeg", "png": "image/png",
+             "gif": "image/gif", "webp": "image/webp"}
 
 
 def die(msg):
