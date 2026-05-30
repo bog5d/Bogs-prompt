@@ -62,6 +62,24 @@ CTYPE_MAP = {"jpg": "image/jpeg", "png": "image/png",
              "gif": "image/gif", "webp": "image/webp"}
 
 
+def _load_secrets():
+    p = os.path.expanduser("~/.bog_secrets")
+    if not os.path.exists(p):
+        return
+    with open(p) as fp:
+        for line in fp:
+            line = line.strip()
+            if line.startswith("export "):
+                line = line[7:]
+            if "=" in line and not line.startswith("#"):
+                k, _, v = line.partition("=")
+                v = v.strip().strip('"').strip("'")
+                if k.strip() not in os.environ:
+                    os.environ[k.strip()] = v
+
+_load_secrets()
+
+
 def die(msg):
     print(f"❌ {msg}")
     sys.exit(1)
