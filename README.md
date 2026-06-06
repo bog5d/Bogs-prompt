@@ -49,6 +49,7 @@
 | `tysk.md` | `tysk` / `:tysk` | V1.0 | 通用 AI 协作 · Skill/Memory 同步 |
 | `pub.sh` | `pub` | — | 发布：剪贴板 → 微信公众号草稿 |
 | `pub2gg.py` | `pub2gg` | — | 二次分发：微信已发文 → WordPress + GitHub（配图重托管）|
+| `rec.sh` | `rec` | — | 存档：剪贴板 → Obsidian Vault（智能命名）→ git 同步 |
 | `ksrj-template.md` | — | — | ksrj 格式打样示例（Golden Standard） |
 | `bogs.yml` | — | — | Espanso 桌面端触发词配置 |
 | `termux-setup.sh` | — | — | Termux 移动端一键指令注册脚本 |

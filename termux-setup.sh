@@ -35,6 +35,7 @@ add_alias "tysk"   "tysk.md"    # 通用 AI 协作 Skill 同步
 # ── 可执行脚本指令（直接运行型）────────────────────────────────
 install_script "pub"    "pub.sh"     # 发布：剪贴板 → 微信公众号草稿
 install_script "pub2gg" "pub2gg.py"  # 二次分发：微信已发文 → WordPress + GitHub
+install_script "rec"    "rec.sh"     # 存档：剪贴板 → Obsidian Vault → git 同步
 
 # ── 本地密钥加载 ────────────────────────────────────────────────
 if ! grep -q "bog_secrets" "$BASHRC" 2>/dev/null; then
@@ -45,7 +46,7 @@ source "$BASHRC" 2>/dev/null
 echo ""
 echo "✅ Bogs-prompt 指令注册完毕"
 echo "   剪贴板型：ksrj, kych, smqpft, tysk"
-echo "   执行型：  pub（→微信草稿）、pub2gg（微信已发文 →WordPress+GitHub）"
+echo "   执行型：  pub（→微信草稿）、pub2gg（微信已发文 →WordPress+GitHub）、rec（→Obsidian+git）"
 echo ""
 echo "⚠️  首次使用前，请在 ~/.bog_secrets 配置密钥（示例）："
 echo "   export BOGS_PUB_TOKEN=\"微信中继站 token\"      # pub 必需"

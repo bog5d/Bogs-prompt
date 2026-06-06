@@ -105,6 +105,7 @@ tysk    # 拉取通用AI协作同步指令 → 注入剪贴板
 |------|------|------|
 | `pub` | `pub.sh` | 剪贴板内容 → 微信中继站 → 微信公众号草稿 |
 | `pub2gg` | `pub2gg.py` | 微信已发表文章链接 → 配图重托管 → WordPress 直发 + GitHub 归档 + Telegram 推送 |
+| `rec` | `rec.sh` | 剪贴板内容 → Obsidian Vault（智能命名）→ git 同步 |
 
 **密钥统一存 `~/.bog_secrets`（不进仓库）：**
 ```bash
