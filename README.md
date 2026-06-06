@@ -43,7 +43,7 @@
 
 | 文件 | 命令/触发词 | 版本 | 说明 |
 |------|------------|------|------|
-| `ksrj.md` | `ksrj` / `:ksrj` | V3.3 | 口述日记 · 思想副本编译器 |
+| `ksrj.md` | `ksrj` / `:ksrj` | V3.4 | 口述日记 · 思想副本编译器 |
 | `kych.md` | `kych` / `:kych` | V8.0 | 考研词汇 · 实景教练 VAR |
 | `smqpft.md` | `smqpft` / `:smqpft` | V1.0 | 生命切片 · 访谈主理人 |
 | `tysk.md` | `tysk` / `:tysk` | V1.0 | 通用 AI 协作 · Skill/Memory 同步 |

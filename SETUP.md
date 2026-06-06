@@ -94,7 +94,7 @@ tysk    # 拉取通用AI协作同步指令 → 注入剪贴板
 
 | 命令 | 触发词 | 文件 | 版本 | 用途 |
 |------|--------|------|------|------|
-| `ksrj` | `:ksrj` | `ksrj.md` | V3.3 | 口述日记 · 思想副本编译器 |
+| `ksrj` | `:ksrj` | `ksrj.md` | V3.4 | 口述日记 · 思想副本编译器 |
 | `kych` | `:kych` | `kych.md` | V8.0 | 考研词汇 · 实景教练 VAR |
 | `smqpft` | `:smqpft` | `smqpft.md` | V1.0 | 生命切片 · 访谈主理人 |
 | `tysk` | `:tysk` | `tysk.md` | V1.0 | 通用 AI 协作 · Skill/Memory 同步 |
