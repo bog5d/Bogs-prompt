@@ -30,3 +30,11 @@ matches:
         type: shell
         params:
           cmd: "powershell.exe -NoProfile -Command \"(Invoke-RestMethod -Uri 'https://raw.githubusercontent.com/bog5d/Bogs-prompt/main/tysk.md')\""
+
+  - trigger: ":syrj"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "powershell.exe -NoProfile -Command \"(Invoke-RestMethod -Uri 'https://raw.githubusercontent.com/bog5d/Bogs-prompt/main/syrj.md')\""
