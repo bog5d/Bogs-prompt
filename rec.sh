@@ -59,6 +59,26 @@ if echo "$CONTENT" > "$FILE_PATH"; then
     echo "── 内容预览（前3行）──────────────────────"
     echo "$CONTENT" | head -n 3
     echo "──────────────────────────────────────────"
+
+    # ── Flomo 同步 ────────────────────────────────────────────
+    if [ -n "$BOGS_FLOMO_WEBHOOK" ]; then
+        FLOMO_PAYLOAD=$(python3 -c "
+import json, sys
+content = sys.stdin.read()
+payload = {'content': content, 'content_type': 'markdown'}
+print(json.dumps(payload))
+" <<< "$CONTENT")
+        FLOMO_HTTP=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST "$BOGS_FLOMO_WEBHOOK" \
+            -H "Content-Type: application/json" \
+            -d "$FLOMO_PAYLOAD")
+        if [ "$FLOMO_HTTP" = "200" ]; then
+            echo "📝 已同步到 Flomo"
+        else
+            echo "⚠️  Flomo 同步失败 (HTTP $FLOMO_HTTP)，本地已保存"
+        fi
+    fi
+
     cd "$VAULT_PATH"
     bash -ic 'obs'
 else
