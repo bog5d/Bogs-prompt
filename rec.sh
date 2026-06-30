@@ -33,12 +33,12 @@ if [ -z "$TITLE" ]; then
 fi
 
 # ── 文件名清理 ────────────────────────────────────────────────
-# 去掉 emoji（U+1F000 以上）、文件名非法字符、压缩连续下划线
+# 白名单策略：只保留 ASCII 可打印字符 + 中文，其余一律剔除
 SAFE_TITLE=$(echo "$TITLE" | python3 -c "
 import sys, re
 t = sys.stdin.read().strip()
-t = re.sub(r'[\U00010000-\U0010FFFF]', '', t)   # 剔除 emoji
-t = re.sub(r'[/\\\\:*?\"<>|·#\[\]]', '_', t)   # 文件名非法字符
+t = re.sub(r'[^\x20-\x7E一-鿿㐀-䶿＀-￯　-〿]', '', t)
+t = re.sub(r'[/\\\\:*?\"<>|]', '_', t)
 t = re.sub(r'\s+', '_', t)
 t = re.sub(r'_+', '_', t)
 print(t.strip('_'))
