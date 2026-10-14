@@ -31,6 +31,7 @@ add_alias "ksrj"   "ksrj.md"    # 口述日记 · 思想副本
 add_alias "kych"   "kych.md"    # 考研词汇 · 实景教练
 add_alias "smqpft" "smqpft.md"  # 生命切片 · 访谈主理人
 add_alias "tysk"   "tysk.md"    # 通用 AI 协作 Skill 同步
+add_alias "scp38"  "scp38.md"   # 集团代码原则 SCP v3.8
 
 # ── 可执行脚本指令（直接运行型）────────────────────────────────
 install_script "pub"    "pub.sh"     # 发布：剪贴板 → 微信公众号草稿
@@ -45,7 +46,7 @@ fi
 source "$BASHRC" 2>/dev/null
 echo ""
 echo "✅ Bogs-prompt 指令注册完毕"
-echo "   剪贴板型：ksrj, kych, smqpft, tysk"
+echo "   剪贴板型：ksrj, kych, smqpft, tysk, scp38"
 echo "   执行型：  pub（→微信草稿）、pub2gg（微信已发文 →WordPress+GitHub）、rec（→Obsidian+git）"
 echo ""
 echo "⚠️  首次使用前，请在 ~/.bog_secrets 配置密钥（示例）："
