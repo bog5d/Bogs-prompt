@@ -8,6 +8,10 @@
 
 ---
 
+## 当前代码原则（SCP v3.8）
+
+涉及开发/Agent/运行/交付验收时，必须先读取集团唯一规范 `https://github.com/bog5d/grill-to-spec` 的 README、START_HERE、SCP-v3.8、HARNESS（L1/L2 GCCSEG）。旧 v3.4/3.6/3.7 均只作历史；Skill 库的 v3.4 入口已转为兼容重定向。用户终局效果与工程进度分别验证，代码绿或会话活着不等于业务成功。新一轮提示词可输入 `scp38` 加载中央索引。
+
 ## 会话启动协议
 
 每次会话开始时，主动同步两个 GitHub 仓库到本地：

@@ -47,6 +47,7 @@
 | `kych.md` | `kych` / `:kych` | V8.0 | 考研词汇 · 实景教练 VAR |
 | `smqpft.md` | `smqpft` / `:smqpft` | V1.0 | 生命切片 · 访谈主理人 |
 | `tysk.md` | `tysk` / `:tysk` | V1.0 | 通用 AI 协作 · Skill/Memory 同步 |
+| `scp38.md` | `scp38` / `:scp38` | SCP v3.8 | 集团AI开发标准快捷入口（完整规则以 grill-to-spec 为准） |
 | `pub.sh` | `pub` | — | 发布：剪贴板 → 微信公众号草稿 |
 | `pub2gg.py` | `pub2gg` | — | 二次分发：微信已发文 → WordPress + GitHub（配图重托管）|
 | `rec.sh` | `rec` | — | 存档：剪贴板 → Obsidian Vault（智能命名）→ git 同步 |

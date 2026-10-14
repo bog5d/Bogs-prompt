@@ -47,6 +47,7 @@ ksrj    # 拉取口述日记指令 → 注入剪贴板
 kych    # 拉取考研词汇指令 → 注入剪贴板
 smqpft  # 拉取生命切片访谈指令 → 注入剪贴板
 tysk    # 拉取通用AI协作同步指令 → 注入剪贴板
+scp38   # 拉取当前SCP v3.8集团代码原则指令
 ```
 
 ---
@@ -98,6 +99,7 @@ tysk    # 拉取通用AI协作同步指令 → 注入剪贴板
 | `kych` | `:kych` | `kych.md` | V8.0 | 考研词汇 · 实景教练 VAR |
 | `smqpft` | `:smqpft` | `smqpft.md` | V1.0 | 生命切片 · 访谈主理人 |
 | `tysk` | `:tysk` | `tysk.md` | V1.0 | 通用 AI 协作 · Skill/Memory 同步 |
+| `scp38` | `:scp38` | `scp38.md` | SCP v3.8 | 当前集团代码原则唯一上位入口 |
 
 ### 可执行脚本（Termux 直接运行，非剪贴板注入）
 
